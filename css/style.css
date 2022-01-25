@@ -1,0 +1,36 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+*{
+  box-sizing: border-box;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+section {
+  width: 660px;
+  margin: 40px auto;
+  text-align: center;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  font-family:sans-serif;
+}
+
+#warning {
+  color: red;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+
+.hidden{
+  display: none;
+}
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+    	<meta name="description" content="Daily true horoscope">
+    	<meta name="keywords" content="horoscope">
+
+		<title>DAILY HOROSCOPE</title>
+
+		<!-- external CSS link -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<section>
+			<h1>Your horoscope for today</h1>
+			<form action="#">
+				<label for="">When is your birthday?
+					<input type="date" name="birthday" id="DOB">
+					<button id="submit" type="button">Submit</button> <p id="warning"></p>
+				</label>
+			</form>
+			<div class="starSigns">
+				<h2 id="userStarSign"></h2>
+				<article class="hidden Aquarius info">
+					There's travel in your future, when your tongue freezes to the back of a speeding bus.<br>
+					Fill that void in your pathetic life, by playing whack-a-mole 17 hours a day.
+				</article>
+				<article class="hidden Pisces info">
+					Try to avoid any virgos or leos with the ebola virus.<br>
+					You're the true Lord of the dance, no matter what those idiots at work say.
+				</article>
+				<article class="hidden Aries info">
+					The look on your face will be priceless, when you find that 40 pound watermelon in your colon.<br>
+					Trade toothbrushes with an albino dwarf, then give a hickey to Meryl Streep.
+				</article>
+				<article class="hidden Taurus info">
+					You will never find true happiness - What you gonna do, cry about it?<br>
+					The stars predict tomorrow you'll wake up, do a bunch of stuff and then go back to sleep.
+				</article>
+				<article class="hidden Gemini info">
+					Your birthday party will be ruined, once again by your explosive flatulence.<br>
+					Your love life will run into trouble when your fiancé hurls a javelin through your chest.
+				</article>
+				<article class="hidden Cancer info">
+					The position of Jupiter says that you should spend the rest of the week face down in the mud.<br>
+					Try not to shove a roll of duct tape up your nose while taking your driver's test.
+				</article>
+				<article class="hidden Leo info">
+					Now is not a good time to photocopy your butt, and staple it to your bosses face, oh no!<br>
+					Eat a bucket of tuna-flavored pudding, then wash it down with a gallon of strawberry quik.
+				</article>
+				<article class="hidden Virgo info">
+					All virgos are extremely friendly and intelligent, <strong>except for you</strong>.<br>
+					Expect a big surprise today, when you wind up with your head impaled upon a stick.
+				</article>
+				<article class="hidden Libra info">
+					A big promotion is just around the corner, for someone much more talented than you.<br>
+					Laughter is the very best medicine: remember that when your appendix bursts next week.
+				</article>
+				<article class="hidden Scorpio info">
+					Get ready for an unexpected trip when you fall screaming from an open window.<br>
+					Work a little bit harder on improving your low self-esteem, <strong>you stupid freak</strong>.
+				</article>
+				<article class="hidden Sagittarius info">
+					All your friends are laughing behind your back <strong><em>(kill them)</em></strong>.<br>
+					Take down all those naked pictures of Ernest Borgnine, you've got hanging in your den.
+				</article>
+				<article class="hidden Capricorn info">
+					The stars say that you're an exciting and wonderful person, but, you know they're lying.<br>
+					If I were you, I'd lock my doors and windows, and never, never, never, never, never leave my house again.
+				</article>
+			</div>
+		</section>
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+
+	<script>
+		document.querySelector('#submit').addEventListener('click', horoscope) //starts the horoscope function when submit is pressed
+		
+		let userStarSign = ''
+
+		function horoscope(){
+			const info = document.querySelectorAll('.info') //to easily get the info class tag for each of the horoscopes
+			info.forEach(i => i.classList.add('hidden')) //hides any existing displayed horoscope
+			const birthday = document.getElementById("DOB").value.split('-') //splits up entered date 
+			console.log(birthday)
+			const month = Number(birthday[1]) //obtains month from date
+			const day = Number(birthday[2]) //obtains day from date
+			console.log(month, day)
+			starSign(month, day) //passes to function to calculate what starsign
+			if (userStarSign === ''){
+				document.getElementById('userStarSign').innerText = ' ' //if no date selected, clears the element text
+			} else {
+				document.getElementById('userStarSign').innerText = `Your star sign is ${userStarSign}` //displays the starsign
+				document.querySelector(`.${userStarSign}`).classList.toggle('hidden') //displays the appropriate horoscope using the variable userStarSign
+			}
+
+		}
+
+		function starSign(m, d){
+			
+			document.getElementById('warning').innerText = '' //clears out the no date entered warning
+			document.getElementById('userStarSign').innerText = '' //clears any existing starsign text
+			//following set the userStarSign variable based upon the date entered. 
+			if (m === 3 && d >= 21 || m ===4 && d <= 20){
+				userStarSign = 'Aries'
+				document.querySelector('body').style.backgroundColor = "rgb(191, 38, 39)"
+			} else if (m === 4 && d >= 21 || m === 5 && d <= 20){
+				userStarSign = 'Taurus'
+				document.querySelector('body').style.backgroundColor = 'rgb(111, 174, 112)'
+			} else if (m === 5 && d >= 21 || m === 6 && d <= 20){
+				userStarSign = 'Gemini'
+				document.querySelector('body').style.backgroundColor = 'rgb(228, 193, 37)'
+			} else if (m === 6 && d >= 21 || m === 7 && d <= 22){
+				userStarSign = 'Cancer'
+				document.querySelector('body').style.backgroundColor = 'rgb(191, 193, 194)'
+			} else if (m === 7 && d >= 23 || m === 8 && d <= 22){
+				userStarSign = 'Leo'
+				document.querySelector('body').style.backgroundColor = 'rgb(242, 103, 33)'
+			} else if (m === 8 && d >= 23 || m === 9 && d <= 22){
+				userStarSign = 'Virgo'
+				document.querySelector('body').style.backgroundColor = 'rgb(115, 84, 49)'
+			} else if (m === 9 && d >= 23 || m === 10 && d <= 22){
+				userStarSign = 'Libra'
+				document.querySelector('body').style.backgroundColor = 'rgb(215, 105, 161)'
+			} else if (m === 10 && d >= 23 || m === 11 && d <= 22){
+				userStarSign = 'Scorpio'
+				document.querySelector('body').style.backgroundColor = 'rgb(1, 1, 1)'
+			} else if (m === 11 && d >= 23 || m === 12 && d <= 21){
+				userStarSign = 'Sagittarius'
+				document.querySelector('body').style.backgroundColor = 'rgb(148, 85, 163)'
+			} else if (m === 12 && d >= 22 || m === 1 && d <= 19){
+				userStarSign = 'Capricorn'
+				document.querySelector('body').style.backgroundColor = 'rgb(67, 82, 88)'
+			} else if (m === 1 && d >= 20 || m === 2 && d <= 19){
+				userStarSign = 'Aquarius'
+				document.querySelector('body').style.backgroundColor = 'rgb(22, 143, 166)'
+			} else if (m === 2 && d >= 20 || m === 3 && d <= 20){
+				userStarSign = 'Pisces'
+				document.querySelector('body').style.backgroundColor = 'rgb(151, 222, 189)'
+			} else { //if no date was entered
+				document.getElementById('warning').innerText = 'Please enter your birthday'
+				userStarSign = ''
+				document.querySelector('body').style.backgroundColor = '#FFFFFF'
+			}
+		}
+	</script>
+</html>
